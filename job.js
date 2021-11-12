@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Student = require('./models/student');
+const Post = require('./models/post');
+const Comment = require('./models/comment');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -52,12 +54,65 @@ const studentList = [
   },
 ];
 
-for (const student of studentList) {
-  Student.create(student)
-    .then(function () {
-      console.log('Data inserted'); // Success
-    })
-    .catch(function (error) {
-      console.log(error); // Failure
-    });
-}
+const newPosts = Post.insertMany([
+  {
+    username: 'GoodGuyGreg',
+    title: 'Passes out at party',
+    body: 'Wakes up early and cleans house',
+  },
+  {
+    username: 'GoodGuyGreg',
+    title: 'Steals your identity',
+    body: 'Raises your credit score',
+  },
+  {
+    username: 'GoodGuyGreg',
+    title: 'Reports a bug in your code',
+    body: 'Sends you a Pull Request',
+  },
+  { username: 'ScumbagSteve', title: 'Borrows something', body: 'Sells it' },
+  { username: 'ScumbagSteve', title: 'Borrows everything', body: 'The end' },
+  {
+    username: 'ScumbagSteve',
+    title: 'Forks your repo on github',
+    body: 'Sets to private',
+  },
+]);
+
+const newComments = Comment.insertMany([
+  {
+    username: 'GoodGuyGreg',
+    comment: 'Hope you got a good deal!',
+    post: '618e5143ba4dd92cd88603eb',
+  },
+  {
+    username: 'GoodGuyGreg',
+    comment: "What's mine is yours!",
+    post: '618e5143ba4dd92cd88603ec',
+  },
+  {
+    username: 'GoodGuyGreg',
+    comment: "Don't violate the licensing agreement!",
+    post: '618e5143ba4dd92cd88603ed',
+  },
+  {
+    username: 'ScumbagSteve',
+    comment: "It still isn't clean",
+    post: '618e5143ba4dd92cd88603e8',
+  },
+  {
+    username: 'ScumbagSteve',
+    comment: 'Denied your PR cause I found a hack',
+    post: '618e5143ba4dd92cd88603ea',
+  },
+]);
+
+// for (const student of studentList) {
+//   Student.create(student)
+//     .then(function () {
+//       console.log('Data inserted'); // Success
+//     })
+//     .catch(function (error) {
+//       console.log(error); // Failure
+//     });
+// }
