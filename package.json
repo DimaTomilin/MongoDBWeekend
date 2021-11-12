@@ -18,7 +18,8 @@
   },
   "devDependencies": {
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "prettier": "^2.4.1"
   },
   "repository": {
     "type": "git",
