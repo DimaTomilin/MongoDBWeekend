@@ -39,3 +39,15 @@ exports.deleteQuestion = async (req, res) => {
     res.send(err);
   }
 };
+
+exports.getQuestionById = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const question = await Question.find({ _id: id });
+    if (question.length === 0)
+      throw { status: 404, message: 'No Such Question' };
+    else res.send(question[0]);
+  } catch (err) {
+    res.send(err);
+  }
+};

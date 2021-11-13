@@ -6,6 +6,7 @@ const {
   createQuestion,
   updateQuestion,
   deleteQuestion,
+  getQuestionById,
 } = require('../controller/question.js');
 
 const {
@@ -14,6 +15,8 @@ const {
 } = require('../middlewares/validation.js');
 
 router.get('/list', getAllQuestions);
+router.get('/:id', validateId, getQuestionById);
+
 router.post('/create', validateQuestion, createQuestion);
 
 router.put('/update/:id', validateId, validateQuestion, updateQuestion);
