@@ -51,3 +51,15 @@ exports.getQuestionById = async (req, res) => {
     res.send(err);
   }
 };
+
+exports.getQuestionsByDifficulty = async (req, res) => {
+  const difficulty = req.params.difficulty;
+  try {
+    const allQuestions = await Question.find({
+      difficulty: { $gte: difficulty },
+    });
+    res.send(allQuestions);
+  } catch (err) {
+    res.send(err);
+  }
+};

@@ -7,6 +7,7 @@ const {
   updateQuestion,
   deleteQuestion,
   getQuestionById,
+  getQuestionsByDifficulty,
 } = require('../controller/question.js');
 
 const {
@@ -22,5 +23,7 @@ router.post('/create', validateQuestion, createQuestion);
 router.put('/update/:id', validateId, validateQuestion, updateQuestion);
 
 router.delete('/delete/:id', validateId, deleteQuestion);
+
+router.get('/difficulty/:difficulty', getQuestionsByDifficulty);
 
 module.exports = router;
