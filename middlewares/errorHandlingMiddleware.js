@@ -1,4 +1,4 @@
-exports.errorHandler = async (err, req, res, next) => {
+exports.errorHandlerMiddleware = (err, req, res, next) => {
   if (err.status) {
     res.status(err.status);
     res.send({ error: err.message });

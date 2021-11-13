@@ -5,8 +5,10 @@ require('dotenv').config();
 const morgan = require('morgan');
 
 const questionRoute = require('./routers/questionRouter');
-const errorHandlingMiddleware = require('./middlewares/errorHandlingMiddleware');
-const unknownEndpoint = require('./middlewares/unknownEndpoint');
+const {
+  errorHandlerMiddleware,
+} = require('./middlewares/errorHandlingMiddleware');
+const { unknownEndpoint } = require('./middlewares/unknownEndpoint');
 
 app.use(express.json());
 
@@ -33,7 +35,7 @@ app.use('/questions', questionRoute);
 app.use(unknownEndpoint);
 
 // error handling middleware
-app.use(errorHandlingMiddleware);
+app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 3030;
 app.listen(port, () => {
