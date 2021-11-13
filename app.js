@@ -4,6 +4,7 @@ const app = express();
 require('dotenv').config();
 const morgan = require('morgan');
 
+const questionRoute = require('./routers/questionRouter');
 const errorHandlingMiddleware = require('./middlewares/errorHandlingMiddleware');
 const unknownEndpoint = require('./middlewares/unknownEndpoint');
 
@@ -25,11 +26,8 @@ mongoose
   .catch((error) => {
     console.log('error connecting to MongoDB:', error.message);
   });
-console.log(new Date('02/04/1998'));
-deleteByDate();
-app.get('/', (req, res) => {
-  res.send('working');
-});
+
+app.use('/questions', questionRoute);
 
 // unknownEndpoint handling middleware
 app.use(unknownEndpoint);
