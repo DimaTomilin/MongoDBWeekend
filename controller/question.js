@@ -29,3 +29,13 @@ exports.updateQuestion = async (req, res) => {
     res.send(err);
   }
 };
+
+exports.deleteQuestion = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const deletedCount = await Question.deleteOne({ _id: id });
+    res.send(`Question ${id}  deleted`);
+  } catch (err) {
+    res.send(err);
+  }
+};
